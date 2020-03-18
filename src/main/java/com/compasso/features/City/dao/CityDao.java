@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Component
 public class CityDao {
@@ -15,6 +16,7 @@ public class CityDao {
         this.entityManager = entityManager;
     }
 
+    @Transactional
     public City getById(Long id) {
         return entityManager.find(City.class, id);
     }
@@ -24,10 +26,19 @@ public class CityDao {
         entityManager.persist(city);
     }
 
+    @Transactional
     public City getByName(String name) {
         TypedQuery<City> query = entityManager.createQuery(
-                "SELECT c FROM city c WHERE c.name = :name", City.class);
+                "SELECT c FROM City c WHERE c.name = :name", City.class);
         query.setParameter("name", name);
         return query.getSingleResult();
+    }
+
+    @Transactional
+    public List<City> getByState(String state) {
+        TypedQuery<City> query = entityManager.createQuery(
+                "SELECT c FROM City c WHERE c.state = :state", City.class);
+        query.setParameter("state", state);
+        return query.getResultList();
     }
 }
