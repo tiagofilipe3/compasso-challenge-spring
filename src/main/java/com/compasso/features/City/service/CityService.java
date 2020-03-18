@@ -5,6 +5,7 @@ import com.compasso.features.City.model.City;
 import com.compasso.features.City.vo.CityVO;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.NoResultException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,6 @@ import java.util.List;
 public class CityService {
     final
     CityDao cityDao;
-
 
     public CityService(CityDao cityDao) {
         this.cityDao = cityDao;
@@ -26,8 +26,13 @@ public class CityService {
         cityDao.createCity(city);
     }
 
-    public CityVO getByName(String name) {
+    public CityVO getByName(String name) throws NoResultException {
         City city = cityDao.getByName(name);
+
+        if (city == null) {
+            throw new NoResultException();
+        }
+
         return new CityVO(city);
     }
 

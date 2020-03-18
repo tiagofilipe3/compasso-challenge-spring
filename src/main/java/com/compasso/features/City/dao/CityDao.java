@@ -10,7 +10,7 @@ import java.util.List;
 
 @Component
 public class CityDao {
-    private final EntityManager entityManager;
+    private EntityManager entityManager;
 
     public CityDao(EntityManager entityManager) {
         this.entityManager = entityManager;

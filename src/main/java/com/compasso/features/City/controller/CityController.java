@@ -53,6 +53,11 @@ public class CityController {
   public ResponseEntity<String> getCityByState(@PathVariable("state") String state) {
     try {
       List<CityVO> cityVOS = cityService.getByState(state);
+
+      if (cityVOS.size() == 0) {
+        return new ResponseEntity<>("Nenhum resultado encontrado para o Estado informado", HttpStatus.OK);
+      }
+
       return new ResponseEntity<>(new Gson().toJson(cityVOS), HttpStatus.OK);
     } catch (NoResultException nre) {
       nre.printStackTrace();
