@@ -17,6 +17,7 @@ public class CityController {
 
   final CityDao cityDao;
   final CityService cityService;
+  final String CITY_NOT_FOUND = "A cidade informada não existe no nosso banco de dados";
 
   public CityController(CityDao cityDao, CityService cityService) {
     this.cityDao = cityDao;
@@ -41,7 +42,7 @@ public class CityController {
       return new ResponseEntity<>(new Gson().toJson(cityVO), HttpStatus.OK);
     } catch (NoResultException nre) {
       nre.printStackTrace();
-      return new ResponseEntity<>("A cidade informada não existe no nosso banco de dados", HttpStatus.BAD_REQUEST);
+      return new ResponseEntity<>(CITY_NOT_FOUND, HttpStatus.BAD_REQUEST);
     } catch (Exception e) {
       e.printStackTrace();
       return new ResponseEntity<>("Ocorreu um erro ao buscar a cidade", HttpStatus.BAD_REQUEST);
@@ -55,7 +56,7 @@ public class CityController {
       return new ResponseEntity<>(new Gson().toJson(cityVOS), HttpStatus.OK);
     } catch (NoResultException nre) {
       nre.printStackTrace();
-      return new ResponseEntity<>("A cidade informada não existe no nosso banco de dados", HttpStatus.BAD_REQUEST);
+      return new ResponseEntity<>(CITY_NOT_FOUND, HttpStatus.BAD_REQUEST);
     } catch (Exception e) {
       e.printStackTrace();
       return new ResponseEntity<>("Ocorreu um erro ao buscar as cidades", HttpStatus.BAD_REQUEST);
