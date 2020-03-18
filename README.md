@@ -1,4 +1,4 @@
-A Spring Boot REST api to create, update and retrive Customers and Cities.<br />
+A Spring Boot REST api to create, update and retrieve Customers and Cities.<br />
 Written in Java, H2 and Swagger.
 
 Simply run the project on your favorite IDE.
