@@ -11,9 +11,9 @@ To make requests to the API, use Insomnia or Postman.
 
 Ex.:
 
-URL: http://localhost:8080/city/ <br />
-Method: PUT <br />
-Body: {
+URL: `http://localhost:8080/city/` <br />
+Method: `PUT` <br />
+Body: `{
   "name": "Joinville",
   "state": "SC"
-}
+}`
